@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Техномир — Контакты</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0c0f;
+            font-family: 'Segoe UI', 'Roboto', 'Courier New', monospace;
+            color: #e0e0e0;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* навигация */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #2a2e35;
+            padding-bottom: 1rem;
+        }
+
+        .top-nav a {
+            color: #8bc34a;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: 0.2s;
+        }
+
+        .top-nav a:hover {
+            color: #cdff6e;
+            text-decoration: underline;
+        }
+
+        /* заголовок */
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #e0e0e0, #8bc34a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .page-header p {
+            color: #8bc34a;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        /* контактная карточка */
+        .contact-card {
+            background: #111418;
+            border: 1px solid #2c313a;
+            border-radius: 32px;
+            padding: 2rem 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .contact-nick {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(145deg, #fff, #8bc34a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .contact-label {
+            color: #8bc34a;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            font-size: 1.2rem;
+            font-family: monospace;
+            background: #1a1e26;
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            margin: 0.5rem 0;
+        }
+
+        .contact-row {
+            margin: 1.8rem 0;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+
+        /* дополнительные контакты сеткой */
+        .contacts-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            background: #0f1117;
+            border: 1px solid #2c313a;
+            border-radius: 24px;
+            padding: 1rem 1.5rem;
+            flex: 1 1 200px;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .contact-item:hover {
+            border-color: #8bc34a;
+            transform: translateY(-3px);
+        }
+
+        .contact-item .platform {
+            font-weight: bold;
+            color: #cdff6e;
+            font-size: 1.2rem;
+        }
+
+        .contact-item .detail {
+            font-family: monospace;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            word-break: break-all;
+        }
+
+        .contact-item .detail1 {
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            word-break: break-all;
+        }
+
+        .footer-links {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #252a33;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #8bc34a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+            .top-nav {
+                justify-content: center;
+            }
+            .contact-nick {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top-nav">
+        <a href="index.html">Главная</a>
+        <a href="#">Участники</a>
+        <a href="zakony.html">Законы</a>
+        <a href="#">Архив</a>
+        <a href="kontakty.html">Контакты</a>
+    </div>
+
+    <div class="page-header">
+        <h1>📡 Контакты банды 📡</h1>
+        <p>Связь с ядром Техномира</p>
+    </div>
+
+    <div class="contact-card">
+        <div class="contact-label">Главный ник / Кодовое имя</div>
+        <div class="contact-nick">wertyt2332</div>
+        <div class="contact-label">Прямая связь</div>
+        <div class="contact-value">@wertyt2332 (Telegram / Discord)</div>
+        <div class="contact-row">
+            <span class="contact-icon">✉️</span>
+            <span class="contact-label">почта для важных дел</span><br>
+            <span class="contact-value">wertyt2332@gmail.com</span>
+        </div>
+    </div>
+
+    <div class="contacts-grid">
+        <div class="contact-item">
+            <div class="platform">📱 Telegram</div>
+            <div class="detail">@wertyt2332</div>
+        </div>
+        <div class="contact-item">
+            <div class="platform">🎙️ Discord</div>
+            <div class="detail">wertyt2332</div>
+        </div>
+        <div class="contact-item">
+            <div class="platform">🐙 GitHub</div>
+            <div class="detail">/wertyt2332</div>
+        </div>
+        <div class="contact-item">
+            <div class="platform">📧 Email</div>
+            <div class="detail1">wertyt2332@gmail.com</div>
+        </div>
+    </div>
+
+    <!-- маленькая приписка -->
+    <div style="text-align: center; margin-top: 2rem; font-size: 0.85rem; opacity: 0.7;">
+        ⚡ Если ты свой — пиши. Если чужой — готовь клятву. ⚡
+    </div>
+
+    <div class="footer-links">
+        <a href="index.html">← На главную</a>
+        <a href="zakony.html">Законы</a>
+        <a href="#">Участники</a>
+        <a href="#">Архив</a>
+    </div>
+</div>
+</body>
+</html>

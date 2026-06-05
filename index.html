@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Техномир — Главная</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0c0f;
+            font-family: 'Segoe UI', 'Roboto', 'Courier New', monospace;
+            color: #e0e0e0;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        /* контейнер с ограничением ширины */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* ========== НАВИГАЦИЯ (ссылки на другие страницы) ========== */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid #2a2e35;
+            padding-bottom: 1rem;
+        }
+
+        .top-nav a {
+            color: #8bc34a;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+
+        .top-nav a:hover {
+            color: #cdff6e;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+        }
+
+        /* ========== ПРАВЫЙ БЛОК ЗАГОЛОВОК + ОПИСАНИЕ ========== */
+        .hero {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 5rem;
+            text-align: right;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 12vw, 6rem);
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            background: linear-gradient(135deg, #e0e0e0, #8bc34a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            word-break: break-word;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            border-left: 3px solid #8bc34a;
+            padding-left: 1.2rem;
+            background: rgba(139, 195, 74, 0.05);
+            display: inline-block;
+            width: auto;
+            margin-top: 0.5rem;
+        }
+
+        /* место для твоего описания */
+        .hero-description p {
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* ========== ОСНОВАТЕЛИ ========== */
+        .founders-section {
+            margin: 4rem 0 5rem 0;
+        }
+
+        .founders-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            border-left: 5px solid #8bc34a;
+            padding-left: 1rem;
+        }
+
+        .founders-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            justify-content: center;
+        }
+
+        .founder-card {
+            background: #111418;
+            border: 1px solid #2c313a;
+            border-radius: 28px;
+            padding: 2rem 2rem 2rem 2rem;
+            flex: 1 1 280px;
+            max-width: 350px;
+            transition: transform 0.2s, border-color 0.2s;
+            text-align: center;
+            backdrop-filter: blur(2px);
+        }
+
+        .founder-card:hover {
+            transform: translateY(-8px);
+            border-color: #8bc34a;
+            box-shadow: 0 10px 25px -10px rgba(139, 195, 74, 0.3);
+        }
+
+        .founder-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .founder-name {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(145deg, #fff, #8bc34a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .founder-role {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: #8bc34a;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .founder-desc {
+            font-size: 0.95rem;
+            color: #b0b7c5;
+        }
+
+        /* ========== ИНФО-БЛОК (5 человек и будущий контент) ========== */
+        .extra-block {
+            margin-top: 4rem;
+            background: #0f1117;
+            border-radius: 32px;
+            padding: 2rem 2rem;
+            border: 1px dashed #2f3540;
+            text-align: center;
+        }
+
+        .band-counter {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #cdff6e;
+            background: #1a1e26;
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            margin-bottom: 1.5rem;
+        }
+
+        .future-text {
+            font-size: 1rem;
+            opacity: 0.8;
+            letter-spacing: 0.3px;
+        }
+
+        /* ========== НИЖНИЕ ССЫЛКИ (повтор для удобства) ========== */
+        .footer-links {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #252a33;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #8bc34a;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* адаптив для маленьких экранов */
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+            .hero {
+                justify-content: center;
+                text-align: center;
+            }
+            .hero-content {
+                text-align: center;
+            }
+            .hero-description {
+                border-left: none;
+                border-top: 2px solid #8bc34a;
+                padding-top: 1rem;
+                padding-left: 0;
+                display: block;
+            }
+            .founders-grid {
+                gap: 1.5rem;
+            }
+            .top-nav {
+                justify-content: center;
+            }
+        }
+        /* === Блок с пятью карточками === */
+        .team-section {
+            margin: 4rem 0 2rem 0;
+            text-align: center;
+        }
+
+        .team-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #cdff6e;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #2a2e35;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: #111418;
+            border: 1px solid #2c313a;
+            border-radius: 24px;
+            padding: 1.5rem 1rem;
+            width: 220px;
+            flex: 1 0 180px;
+            max-width: 240px;
+            transition: 0.2s;
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: #8bc34a;
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            background: #1e232c;
+            margin: 0 auto 1rem auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #8bc34a;
+            border: 2px dashed #4a5c3c;
+            overflow: hidden;
+        }
+
+        /* когда вставишь реальные фото — убери фон и рамку, либо добавь img */
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0.5rem 0 0.3rem;
+            background: linear-gradient(135deg, #f0f0f0, #b8e16a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .team-desc {
+            font-size: 0.9rem;
+            color: #b0b7c5;
+            background: rgba(139, 195, 74, 0.1);
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        /* на маленьких экранах по 2 карточки, потом по 1 */
+        @media (max-width: 700px) {
+            .team-card {
+                flex-basis: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Верхние ссылки на другие страницы (потом заменишь # на реальные адреса) -->
+    <div class="top-nav">
+        <a href="index.html">История</a>
+        <a href="#">Участники</a>
+        <a href="zakony.html">Законы</a>
+        <a href="#">Архив</a>
+        <a href="kontakty.html">Контакты</a>
+    </div>
+
+    <!-- ГЛАВНЫЙ БЛОК: справа ТЕХНОМИР и описание -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>ТЕХНОМИР</h1>
+            <div class="hero-description">
+                <p>«Здесь будет твоё описание. Вставь любой текст, брат. Например: Мы — сила, мы — технологии, мы — семья»</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ОСНОВАТЕЛИ: МАТЬ и ОТЕЦ -->
+    <div class="founders-section">
+        <div class="founders-title">🏴‍☠️ Два столпа</div>
+        <div class="founders-grid">
+            <!-- Карточка МАТЬ -->
+            <div class="founder-card">
+                <div class="founder-icon">⚙️👑</div>
+                <div class="founder-name">МАТЬ</div>
+                <div class="founder-role">Основательница / Душа</div>
+                <div class="founder-desc">Сталь, порядок и забота. Без неё не было бы ни братства, ни кода.</div>
+            </div>
+            <!-- Карточка ОТЕЦ -->
+            <div class="founder-card">
+                <div class="founder-icon">🔧🔥</div>
+                <div class="founder-name">ОТЕЦ</div>
+                <div class="founder-role">Основатель / Сила</div>
+                <div class="founder-desc">Технологии, стратегия и огонь. Тот, кто скрепил банду «Техномир».</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- === 5 человек банды: карточки === -->
+    <div class="team-section">
+        <div class="team-title">⚡ Наша банда ⚡</div>
+        <div class="team-grid">
+            <!-- Мать -->
+            <div class="team-card">
+                <div class="team-photo">📷 ФОТО</div> <!-- сюда потом вставишь картинку -->
+                <div class="team-name">МАТЬ</div>
+                <div class="team-desc">Сталь и порядок</div>
+            </div>
+            <!-- Отец -->
+            <div class="team-card">
+                <div class="team-photo">📷 ФОТО</div>
+                <div class="team-name">ОТЕЦ</div>
+                <div class="team-desc">Стратегия и огонь</div>
+            </div>
+            <!-- Мастер -->
+            <div class="team-card">
+            <div class="team-photo">📷 ФОТО</div>
+            <div class="team-name">МАСТЕР</div>
+            <div class="team-desc">Код и инструменты</div>
+            </div>
+            <!-- Роллтон -->
+            <div class="team-card">
+                <div class="team-photo">📷 ФОТО</div>
+                <div class="team-name">РОЛЛТОН</div>
+                <div class="team-desc">Драйв и бас</div>
+            </div>
+            <!-- Картошка -->
+            <div class="team-card">
+                <div class="team-photo">📷 ФОТО</div>
+                <div class="team-name">КАРТОШКА</div>
+                <div class="team-desc">Тепло и уют</div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Ещё одни ссылки на другие страницы (для удобства) -->
+    <div class="footer-links">
+        <a href="#">Участники</a>
+        <a href="#">Галерея</a>
+        <a href="zakony.html">Законы</a>
+        <a href="#">Участники</a>
+        <a href="#">Архив</a>
+    </div>
+</div>
+</body>
+</html>

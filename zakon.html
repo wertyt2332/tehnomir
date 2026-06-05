@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Техномир — Законы</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0c0f;
+            font-family: 'Segoe UI', 'Roboto', 'Courier New', monospace;
+            color: #e0e0e0;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* навигация как на главной */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #2a2e35;
+            padding-bottom: 1rem;
+        }
+
+        .top-nav a {
+            color: #8bc34a;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: 0.2s;
+        }
+
+        .top-nav a:hover {
+            color: #cdff6e;
+            text-decoration: underline;
+        }
+
+        /* заголовок страницы */
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #e0e0e0, #8bc34a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .page-header p {
+            color: #8bc34a;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            border-top: 1px solid #2a2e35;
+            display: inline-block;
+            padding-top: 0.5rem;
+        }
+
+        /* сетка законов */
+        .laws-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .law-card {
+            background: #111418;
+            border: 1px solid #2c313a;
+            border-radius: 32px;
+            padding: 2rem 1.8rem;
+            flex: 1 1 300px;
+            max-width: 350px;
+            transition: transform 0.2s, border-color 0.2s;
+            text-align: center;
+        }
+
+        .law-card:hover {
+            transform: translateY(-8px);
+            border-color: #8bc34a;
+            box-shadow: 0 15px 30px -12px rgba(139, 195, 74, 0.25);
+        }
+
+        .law-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .law-number {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #8bc34a;
+            letter-spacing: 2px;
+            background: #1e242c;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+        }
+
+        .law-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(145deg, #fff, #a8e063);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .law-text {
+            font-size: 1rem;
+            color: #b0b7c5;
+            line-height: 1.5;
+        }
+
+        .law-text strong {
+            color: #cdff6e;
+        }
+
+        /* дополнительный блок с цитатой */
+        .quote-block {
+            margin: 4rem auto 2rem;
+            text-align: center;
+            background: #0f1117;
+            border-left: 5px solid #8bc34a;
+            padding: 1.5rem;
+            border-radius: 24px;
+            max-width: 700px;
+        }
+
+        .quote-block p {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #cdff6e;
+        }
+
+        .footer-links {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #252a33;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #8bc34a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+            .top-nav {
+                justify-content: center;
+            }
+            .law-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- та же навигация, что на главной -->
+    <div class="top-nav">
+        <a href="index.html">Главная</a>
+        <a href="#">Участники</a>
+        <a href="zakony.html">Законы</a>
+        <a href="#">Архив</a>
+        <a href="kontakty.html">Контакты</a>
+    </div>
+
+    <div class="page-header">
+        <h1>🗲 Законы Техномира 🗲</h1>
+        <p>Три столпа, что скрепляют банду</p>
+    </div>
+
+    <div class="laws-grid">
+        <!-- Закон 1 -->
+        <div class="law-card">
+            <div class="law-icon">⚙️🤝</div>
+            <div class="law-number">ЗАКОН №1</div>
+            <div class="law-title">МАТЬ</div>
+            <div class="law-text">
+                <strong>«Мать — это Мать»</strong><br>
+            </div>
+        </div>
+        <!-- Закон 2 -->
+        <div class="law-card">
+            <div class="law-icon">💻🔒</div>
+            <div class="law-number">ЗАКОН №2</div>
+            <div class="law-title">ОТЕЦ</div>
+            <div class="law-text">
+                <strong>«Отец — это Отец»</strong><br>
+            </div>
+        </div>
+        <!-- Закон 3 -->
+        <div class="law-card">
+            <div class="law-icon">🔥🧠</div>
+            <div class="law-number">ЗАКОН №3</div>
+            <div class="law-title">МАСТЕР</div>
+            <div class="law-text">
+                <strong>«Если попытаться описать Мастера одним словом, это слово будет «сухарики», но даже оно не передаст и десятой доли того, насколько Мастер сухарики. Глядя на Мастера, начинаешь верить в гармонию сухарики, потому что в Мастере сочетаются сухарики, которые редко встретишь даже по отдельности.»</strong><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="quote-block">
+        <p>✧ Нарушивший закон сам себя изгоняет из Техномира. ✧</p>
+    </div>
+
+    <div class="footer-links">
+        <a href="index.html">← На главную</a>
+        <a href="zakony.html">Законы</a>
+        <a href="#">Участники</a>
+        <a href="#">Архив</a>
+    </div>
+</div>
+</body>
+</html>
