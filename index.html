@@ -161,6 +161,124 @@
             color: #b0b7c5;
         }
 
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: #111418;
+            border: 1px solid #8bc34a;
+            border-radius: 32px;
+            max-width: 650px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 2rem 2rem 1.5rem 2rem;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            animation: fadeInUp 0.2s ease;
+        }
+
+        .modal-content1 p {
+            margin: 0;
+            font-style: italic;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #8bc34a;
+            transition: 0.2s;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: #ff5555;
+            transform: scale(1.1);
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(145deg, #fff, #8bc34a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #2c313a;
+            padding-bottom: 0.5rem;
+        }
+
+        .modal-field {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 1px dashed #2a2e35;
+            padding-bottom: 0.5rem;
+        }
+
+        .modal-field-label {
+            font-weight: bold;
+            width: 110px;
+            color: #8bc34a;
+            flex-shrink: 0;
+        }
+
+        .modal-field-value {
+            flex: 1;
+            color: #e0e0e0;
+            word-break: break-word;
+        }
+
+        .modal-field-value ul {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+
+        .modal-note {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            text-align: center;
+            color: #6c7a8a;
+        }
+
+        @media (max-width: 700px) {
+            .modal-field {
+                flex-direction: column;
+            }
+            .modal-field-label {
+                width: auto;
+                margin-bottom: 0.3rem;
+            }
+        }
+
         /* ========== ИНФО-БЛОК (5 человек и будущий контент) ========== */
         .extra-block {
             margin-top: 4rem;
@@ -353,14 +471,14 @@
         <div class="founders-title">🏴‍☠️ Два столпа</div>
         <div class="founders-grid">
             <!-- Карточка МАТЬ -->
-            <div class="founder-card">
+            <div class="founder-card" data-member="mother">
                 <div class="founder-icon">⚙️👑</div>
                 <div class="founder-name">МАТЬ</div>
                 <div class="founder-role">Основательница / Душа</div>
                 <div class="founder-desc">Забота и порядок. Без неё не было бы ни братства, ни кода.</div>
             </div>
             <!-- Карточка ОТЕЦ -->
-            <div class="founder-card">
+            <div class="founder-card" data-member="father">
                 <div class="founder-icon">🔧🔥</div>
                 <div class="founder-name">ОТЕЦ</div>
                 <div class="founder-role">Основатель / Сила</div>
@@ -374,31 +492,31 @@
         <div class="team-title">⚡ Наша банда ⚡</div>
         <div class="team-grid">
             <!-- Мать -->
-            <div class="team-card">
+            <div class="team-card" data-member="mother">
                 <div class="team-photo">📷 ФОТО</div> <!-- сюда потом вставишь картинку -->
                 <div class="team-name">МАТЬ</div>
                 <div class="team-desc">Сталь и порядок</div>
             </div>
             <!-- Отец -->
-            <div class="team-card">
+            <div class="team-card" data-member="father">
                 <div class="team-photo">📷 ФОТО</div>
                 <div class="team-name">ОТЕЦ</div>
                 <div class="team-desc">Стратегия и огонь</div>
             </div>
             <!-- Мастер -->
-            <div class="team-card">
+            <div class="team-card" data-member="master">
             <div class="team-photo">📷 ФОТО</div>
             <div class="team-name">МАСТЕР</div>
             <div class="team-desc">Код и инструменты</div>
             </div>
             <!-- Роллтон -->
-            <div class="team-card">
+            <div class="team-card" data-member="rollton">
                 <div class="team-photo">📷 ФОТО</div>
                 <div class="team-name">РОЛЛТОН</div>
                 <div class="team-desc">Драйв и бас</div>
             </div>
             <!-- Картошка -->
-            <div class="team-card">
+            <div class="team-card" data-member="kartoshka">
                 <div class="team-photo">📷 ФОТО</div>
                 <div class="team-name">КАРТОШКА</div>
                 <div class="team-desc">Тепло и уют</div>
@@ -414,5 +532,126 @@
         <a href="arhive.html">Архив</a>
     </div>
 </div>
+
+<!-- Модальное окно карточки участника -->
+<div id="memberModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <div class="modal-title" id="modalTitle">Имя участника</div>
+        <div id="modalFieldsContainer"></div>
+        <div class="modal-note">✧ хыхыхыхых ✧</div>
+    </div>
+</div>
+<script>
+    // Данные участников (заменишь на свои)
+    const membersData = {
+        mother: {
+            fullName: "Лиза 'Мать'",
+            nick: "LoreXIIzzy",
+            aliases: "Леди, Мать",
+            birthday: "12 марта 2010",
+            character: "Строгая, но справедливая. Всегда знает, что нужно банде.",
+        },
+        father: {
+            fullName: "Паша 'Отец'",
+            nick: "tokonor",
+            aliases: "Старый, Отец",
+            birthday: "29 декабря 2009",
+            character: "Решительный, харизматичный. Блеблебле",
+        },
+        master: {
+            fullName: "Сережа 'Мастер'",
+            nick: "wertyt2332",
+            aliases: "Кодер, Крутой",
+            birthday: "26 ноября 2009",
+            character: "«Гений, миллиардер, плейбой, филантроп» - настоящий Тони Старк команды. Он видит цель, а препятствия… сами разбегаются, стоит только ему приблизиться. Крах его врагам неизбежен, но друзья никогда не останутся без его помощи. Сережа искренне верит, что весь мир в его руках, и вселенная вторит его убеждениям. Количество навыков этого человека перешло все мыслимые границы. Он виртуозно управляет своим внутренним огнем, и это делает его истинным Мастером.",
+        },
+        rollton: {
+            fullName: "Варя 'Роллтон'",
+            nick: "varvar",
+            aliases: "",
+            birthday: "23 марта 2010",
+            character: "Энергичная, громкая, душа компании.",
+        },
+        kartoshka: {
+            fullName: "Алиса 'Картошка'",
+            nick: "Kartoha_Head",
+            aliases: "Картоха",
+            birthday: "10 декабря 2010",
+            character: "Мягкая, заботливая, уютная.",
+        }
+    };
+
+    // Функция заполнения модалки
+    function openMemberModal(memberId) {
+        const data = membersData[memberId];
+        if (!data) return;
+
+        const modal = document.getElementById('memberModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const container = document.getElementById('modalFieldsContainer');
+
+        // задаём заголовок (имя)
+        let displayName = "";
+        switch(memberId) {
+            case 'mother': displayName = "МАТЬ"; break;
+            case 'father': displayName = "ОТЕЦ"; break;
+            case 'master': displayName = "МАСТЕР"; break;
+            case 'rollton': displayName = "РОЛЛТОН"; break;
+            case 'kartoshka': displayName = "КАРТОШКА"; break;
+            default: displayName = memberId;
+        }
+        modalTitle.innerText = displayName;
+
+        // поля: ФИО, ник, прозвища, ДР, характер, хобби, коронные фразы, вайб, факты
+        const fields = [
+            { label: "📛 ФИО", value: data.fullName },
+            { label: "🎮 Ник", value: data.nick },
+            { label: "🏷️ Прозвища", value: data.aliases },
+            { label: "🎂 День рождения", value: data.birthday },
+            { label: "💭 Описание", value: `<i>«${data.character}»</i>` },
+        ];
+
+        let html = '';
+        fields.forEach(field => {
+            html += `
+                <div class="modal-field">
+                    <div class="modal-field-label">${field.label}</div>
+                    <div class="modal-field-value">${field.value}</div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('memberModal').style.display = 'none';
+    }
+
+    // Навесить обработчики на все карточки с data-member
+    function bindMemberCards() {
+        // Карточки в "Два столпа" и в "Наша банда"
+        const cards = document.querySelectorAll('[data-member]');
+        cards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const member = card.getAttribute('data-member');
+                if (member) openMemberModal(member);
+            });
+        });
+    }
+
+    // Закрытие модалки
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => {
+        const modal = document.getElementById('memberModal');
+        if (e.target === modal) closeModal();
+    });
+
+    // Инициализация
+    bindMemberCards();
+</script>
 </body>
 </html>
