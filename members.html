@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Техномир — Участники</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0c0f;
+            font-family: 'Segoe UI', 'Roboto', 'Courier New', monospace;
+            color: #e0e0e0;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #2a2e35;
+            padding-bottom: 1rem;
+        }
+
+        .top-nav a {
+            color: #8bc34a;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: 0.2s;
+        }
+
+        .top-nav a:hover {
+            color: #cdff6e;
+            text-decoration: underline;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #e0e0e0, #8bc34a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .page-header p {
+            color: #8bc34a;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        /* большое окно с участниками */
+        .member-counter {
+            background: linear-gradient(145deg, #111418, #0c0f14);
+            border: 1px solid #2c313a;
+            border-radius: 48px;
+            padding: 2rem;
+            margin: 2rem 0 3rem 0;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(139, 195, 74, 0.2);
+        }
+
+        .counter-label {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #8bc34a;
+        }
+
+        .counter-number {
+            font-size: 8rem;
+            font-weight: 900;
+            font-family: monospace;
+            background: linear-gradient(135deg, #fff, #8bc34a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin: 0.5rem 0;
+        }
+
+        /* сетка графиков */
+        .charts-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .chart-card {
+            background: #111418;
+            border: 1px solid #2c313a;
+            border-radius: 32px;
+            padding: 1.5rem;
+            flex: 1 1 320px;
+            transition: 0.2s;
+        }
+
+        .chart-card:hover {
+            border-color: #8bc34a;
+            transform: translateY(-5px);
+        }
+
+        .chart-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #cdff6e;
+        }
+
+        canvas {
+            width: 100%;
+            height: auto;
+            background: #0f1117;
+            border-radius: 20px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .chart-note {
+            font-size: 0.7rem;
+            text-align: center;
+            margin-top: 0.8rem;
+            color: #6c7a8a;
+        }
+
+        .footer-links {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #252a33;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #8bc34a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+            .top-nav {
+                justify-content: center;
+            }
+            .counter-number {
+                font-size: 4rem;
+            }
+        }
+
+        button.refresh-btn {
+            background: #1e242c;
+            border: 1px solid #8bc34a;
+            color: #8bc34a;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-family: monospace;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: 0.2s;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top-nav">
+        <a href="index.html">Главная</a>
+        <a href="uchastniki.html">Участники</a>
+        <a href="zakony.html">Законы</a>
+        <a href="archive.html">Архив</a>
+        <a href="kontakty.html">Контакты</a>
+    </div>
+
+    <div class="page-header">
+        <h1>👥 Участники банды 👥</h1>
+        <p>Статистика, которой нет смысла, но смотреть приятно</p>
+    </div>
+
+    <!-- большое окно с количеством участников -->
+    <div class="member-counter">
+        <div class="counter-label">⚡ Активный состав ⚡</div>
+        <div class="counter-number" id="memberCountDisplay">5</div>
+    </div>
+
+    <div class="charts-grid">
+        <!-- график 1: столбчатая диаграмма -->
+        <div class="chart-card">
+            <div class="chart-title">📊 Индекс харизмы</div>
+            <canvas id="barChart" width="400" height="300" style="width:100%; height:auto; max-width:400px; aspect-ratio:400/300"></canvas>
+            <div class="chart-note">единицы измерения — братко-коэффициент</div>
+        </div>
+        <!-- график 2: круговая диаграмма -->
+        <div class="chart-card">
+            <div class="chart-title">🥧 Техно-скиллы</div>
+            <canvas id="pieChart" width="400" height="300" style="width:100%; height:auto; max-width:400px; aspect-ratio:400/300"></canvas>
+            <div class="chart-note">распределение среди всех</div>
+        </div>
+        <!-- график 3: линейный график (тренд) -->
+        <div class="chart-card">
+            <div class="chart-title">📈 Динамика мощи</div>
+            <canvas id="lineChart" width="400" height="300" style="width:100%; height:auto; max-width:400px; aspect-ratio:400/300"></canvas>
+            <div class="chart-note">по дням недели</div>
+        </div>
+    </div>
+
+    <div class="footer-links">
+        <a href="index.html">← На главную</a>
+        <a href="zakony.html">Законы</a>
+        <a href="archive.html">Архив</a>
+        <a href="kontakty.html">Контакты</a>
+    </div>
+</div>
+<script>
+(function() {
+    // получаем canvas
+    const barCanvas = document.getElementById('barChart');
+    const pieCanvas = document.getElementById('pieChart');
+    const lineCanvas = document.getElementById('lineChart');
+
+    let barCtx, pieCtx, lineCtx;
+
+    // текущие отображаемые значения (для анимации)
+    let currentBarData = [65, 80, 45, 92, 77];
+    let currentPieData = [35, 28, 22, 18, 42];
+    let currentLineData = [40, 55, 70, 63, 85, 78, 92];
+
+    // целевые значения (к которым анимируем)
+    let targetBarData = [...currentBarData];
+    let targetPieData = [...currentPieData];
+    let targetLineData = [...currentLineData];
+
+    let animProgress = 1;
+    let animStartTime = 0;
+    const ANIM_DURATION = 10000;
+    let animFrameId = null;
+
+    // ФИКСИРОВАННОЕ количество участников — 5
+    const FIXED_MEMBER_COUNT = 5;
+    document.getElementById('memberCountDisplay').innerText = FIXED_MEMBER_COUNT;
+
+    function randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function generateRandomTargets() {
+        targetBarData = Array.from({length: 5}, () => randomInt(30, 100));
+        targetPieData = Array.from({length: 5}, () => randomInt(10, 60));
+        targetLineData = Array.from({length: 7}, () => randomInt(35, 98));
+        // количество участников не трогаем
+    }
+
+    function animateToNewData() {
+        if (animFrameId) cancelAnimationFrame(animFrameId);
+        animProgress = 0;
+        animStartTime = performance.now();
+        function step(now) {
+            const elapsed = now - animStartTime;
+            let t = Math.min(1, elapsed / ANIM_DURATION);
+            const ease = 1 - Math.pow(1 - t, 3);
+
+            for (let i = 0; i < currentBarData.length; i++) {
+                currentBarData[i] = currentBarData[i] + (targetBarData[i] - currentBarData[i]) * ease;
+            }
+            for (let i = 0; i < currentPieData.length; i++) {
+                currentPieData[i] = currentPieData[i] + (targetPieData[i] - currentPieData[i]) * ease;
+            }
+            for (let i = 0; i < currentLineData.length; i++) {
+                currentLineData[i] = currentLineData[i] + (targetLineData[i] - currentLineData[i]) * ease;
+            }
+
+            updateAllCharts();
+
+            if (t < 1) {
+                animFrameId = requestAnimationFrame(step);
+            } else {
+                currentBarData = [...targetBarData];
+                currentPieData = [...targetPieData];
+                currentLineData = [...targetLineData];
+                updateAllCharts();
+                animFrameId = null;
+            }
+        }
+        animFrameId = requestAnimationFrame(step);
+    }
+
+    function fullUpdate() {
+        generateRandomTargets();
+        animateToNewData();
+    }
+
+    function initCanvases() {
+        barCtx = barCanvas.getContext('2d');
+        pieCtx = pieCanvas.getContext('2d');
+        lineCtx = lineCanvas.getContext('2d');
+
+        function setCanvasSize(canvas) {
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width > 0) {
+                canvas.width = rect.width;
+                canvas.height = rect.width * 0.75;
+            } else {
+                canvas.width = 400; canvas.height = 300;
+            }
+        }
+        setCanvasSize(barCanvas);
+        setCanvasSize(pieCanvas);
+        setCanvasSize(lineCanvas);
+        window.addEventListener('resize', () => {
+            setCanvasSize(barCanvas);
+            setCanvasSize(pieCanvas);
+            setCanvasSize(lineCanvas);
+            updateAllCharts();
+        });
+    }
+
+    function drawBarChart() {
+        if (!barCtx) return;
+        const canvas = barCanvas;
+        const w = canvas.width;
+        const h = canvas.height;
+        barCtx.clearRect(0, 0, w, h);
+        if (w === 0) return;
+
+        const data = currentBarData;
+        const n = data.length;
+        const barWidth = w / n * 0.6;
+        const startX = (w / n - barWidth) / 2;
+        const maxVal = 100;
+
+        for (let i = 0; i < n; i++) {
+            const barHeight = (data[i] / maxVal) * (h - 50);
+            const x = i * (w / n) + startX;
+            const y = h - barHeight - 20;
+            barCtx.fillStyle = '#8bc34a';
+            barCtx.fillRect(x, y, barWidth, barHeight);
+            barCtx.fillStyle = '#b0d47a';
+            barCtx.font = '12px monospace';
+            barCtx.fillText(Math.round(data[i]), x + barWidth/2 - 10, y - 5);
+            barCtx.fillStyle = '#8bc34a';
+            barCtx.font = '10px monospace';
+            const labels = ['Мать', 'Отец', 'Мастер', 'Роллтон', 'Картошка'];
+            if (labels[i]) barCtx.fillText(labels[i].substring(0,2), x + barWidth/2 - 8, h - 5);
+        }
+    }
+
+    function drawPieChart() {
+        if (!pieCtx) return;
+        const canvas = pieCanvas;
+        const w = canvas.width;
+        const h = canvas.height;
+        pieCtx.clearRect(0, 0, w, h);
+        if (w === 0) return;
+
+        const data = currentPieData.map(v => Math.max(0, v));
+        const total = data.reduce((a,b)=>a+b,0);
+        if (total === 0) return;
+        let startAngle = -Math.PI / 2;
+        const centerX = w/2;
+        const centerY = h/2;
+        const radius = Math.min(w, h) * 0.35;
+        const colors = ['#8bc34a', '#cdff6e', '#4caf50', '#2e7d32', '#1b5e20'];
+        for (let i=0; i<data.length; i++) {
+            const angle = (data[i] / total) * Math.PI * 2;
+            const endAngle = startAngle + angle;
+            pieCtx.beginPath();
+            pieCtx.fillStyle = colors[i % colors.length];
+            pieCtx.moveTo(centerX, centerY);
+            pieCtx.arc(centerX, centerY, radius, startAngle, endAngle);
+            pieCtx.fill();
+            startAngle = endAngle;
+        }
+        pieCtx.fillStyle = '#e0e0e0';
+        pieCtx.font = 'bold 12px monospace';
+        pieCtx.fillText('скиллы', centerX-25, centerY+5);
+    }
+
+    function drawLineChart() {
+        if (!lineCtx) return;
+        const canvas = lineCanvas;
+        const w = canvas.width;
+        const h = canvas.height;
+        lineCtx.clearRect(0, 0, w, h);
+        if (w === 0) return;
+
+        const data = currentLineData;
+        const n = data.length;
+        const step = w / (n-1);
+        const maxY = 100;
+        let points = [];
+        for (let i=0; i<n; i++) {
+            const x = i * step;
+            const y = h - 30 - (data[i] / maxY) * (h - 60);
+            points.push({x, y: Math.min(h-35, Math.max(15, y))});
+        }
+        lineCtx.beginPath();
+        lineCtx.strokeStyle = '#cdff6e';
+        lineCtx.lineWidth = 2;
+        points.forEach((p,idx) => {
+            if(idx===0) lineCtx.moveTo(p.x, p.y);
+            else lineCtx.lineTo(p.x, p.y);
+        });
+        lineCtx.stroke();
+        points.forEach(p => {
+            lineCtx.beginPath();
+            lineCtx.fillStyle = '#8bc34a';
+            lineCtx.arc(p.x, p.y, 4, 0, 2*Math.PI);
+            lineCtx.fill();
+        });
+        lineCtx.fillStyle = '#aaa';
+        lineCtx.font = '9px monospace';
+        const days = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+        for (let i=0; i<n; i++) {
+            const x = i * step;
+            lineCtx.fillText(days[i] || '', x-8, h-15);
+        }
+    }
+
+    function updateAllCharts() {
+        drawBarChart();
+        drawPieChart();
+        drawLineChart();
+    }
+
+    // инициализация
+    initCanvases();
+    generateRandomTargets();
+    currentBarData = [...targetBarData];
+    currentPieData = [...targetPieData];
+    currentLineData = [...targetLineData];
+    updateAllCharts();
+
+    // автообновление каждые 5 секунд (только графики)
+    let interval = setInterval(() => fullUpdate(), 5000);
+
+    const refreshBtn = document.getElementById('refreshDataBtn');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => {
+            fullUpdate();
+            refreshBtn.style.transform = 'scale(0.95)';
+            setTimeout(() => { refreshBtn.style.transform = ''; }, 150);
+        });
+    }
+
+    window.addEventListener('resize', () => {
+        setTimeout(() => {
+            updateAllCharts();
+        }, 100);
+    });
+})();
+</script>
+</body>
+</html>
